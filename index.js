@@ -82,6 +82,15 @@ async function run() {
             res.send(result);
         });
 
+        // get all bids for a specific user 
+        app.get('/bids/:email', async(req,res)=>{
+            const email = req.params.email
+            const query = {email}
+            const result = await bidsCollection.find(query).toArray()
+            res.send(result)
+        })
+
+
         // save a Bids in db
         app.post("/add-bid", async (req, res) => {
           const bidData = req.body;
