@@ -101,6 +101,7 @@ async function run() {
         app.patch('/bid-status-update/:id', async(req,res)=>{
             const id = req.params.id
             const {status} = req.body
+            // console.log(status)
             const filter = {_id: new ObjectId(id)}
             const updated = {
                 $set:{status: status}
