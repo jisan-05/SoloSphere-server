@@ -110,6 +110,19 @@ async function run() {
             res.send(result)
         })
 
+        // get all jobs
+        app.get('/all-jobs',async(req,res)=> {
+            const filter = req.query.filter;
+            const search = req.query.search;
+            // console.log(search)
+            let query = {title:{
+                $regex: search, $options: 'i'
+            }}
+            if(filter) query.category = filter
+            const result = await jobsCollection.find(query).toArray()
+            res.send(result)
+        })
+
 
          // get all bid request for a specific user 
         //  app.get('/bid-requests/:email', async(req,res)=>{
